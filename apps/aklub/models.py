@@ -36,7 +36,6 @@ from django.core.files.storage import FileSystemStorage
 from django.core.files.temp import NamedTemporaryFile
 from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
-from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models import Count, Q, Sum
 from django.utils import timezone
@@ -46,6 +45,8 @@ from django.utils.translation import string_concat
 from django.utils.translation import ugettext_lazy as _
 
 import html2text
+
+from phonenumber_field.modelfields import PhoneNumberField
 
 import stdimage
 
@@ -293,7 +294,7 @@ class Recruiter(models.Model):
         max_length=40,
         blank=True,
     )
-    telephone = models.CharField(
+    telephone = PhoneNumberField(
         verbose_name=_("Telephone"),
         max_length=30,
         blank=True,
@@ -418,11 +419,10 @@ class UserProfile(AbstractUser):
         default="cs",
         max_length=50,
     )
-    telephone = models.CharField(
+    telephone = PhoneNumberField(
         verbose_name=_("Telephone"),
         max_length=100,
         blank=True,
-        validators=[RegexValidator(r'^[0-9+ ]*$', _("Telephone must consist of numbers, spaces and + sign")), ],
     )
     street = models.CharField(
         verbose_name=_("Street and number"),
@@ -550,6 +550,12 @@ class UserProfile(AbstractUser):
 
     def __str__(self):
         return str(self.person_name())
+
+    def telephone_raw(self):
+        if type(self.telephone) == str:
+            return self.telephone
+        else:
+            return self.telephone.raw_input
 
     def telephone_url(self):
         if hasattr(self, 'telephone'):

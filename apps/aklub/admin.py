@@ -200,6 +200,7 @@ class UserProfileAdmin(ImportExportMixin, RelatedFieldAdmin, UserAdmin):
         'email',
         'addressment',
         'telephone_url',
+        'telephone_raw',
         'first_name',
         'last_name',
         'is_staff',
@@ -244,7 +245,7 @@ class UserProfileAdmin(ImportExportMixin, RelatedFieldAdmin, UserAdmin):
         }),
         (_('Contacts'), {
             'fields': [
-                ('telephone'),
+                ('telephone', 'telephone_raw'),
                 ('street', 'city', 'country'),
                 'zip_code', 'different_correspondence_address',
             ],
@@ -272,7 +273,7 @@ class UserProfileAdmin(ImportExportMixin, RelatedFieldAdmin, UserAdmin):
     def get_fieldsets(self, request, obj=None):
         return super().get_fieldsets(request, obj) + self.profile_fieldsets
 
-    readonly_fields = ('userattendance_links',)
+    readonly_fields = ('userattendance_links', 'telephone_raw')
     actions = (send_mass_communication_distinct,)
 
 

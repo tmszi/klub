@@ -162,8 +162,11 @@ INSTALLED_APPS = (
     'admin_tools_stats',
     'django_nvd3',
     'adminfilters',
+    'phonenumber_field',
     'aklub'
 )
+
+PHONENUMBER_DEFAULT_REGION = "CZ"
 
 BOWER_INSTALLED_APPS = (
     'jquery#2.2.4',
