@@ -30,9 +30,9 @@ Instalace (Docker compose)
     # su test
     $ pipenv install --dev --python python3
     $ pipenv shell
-    $ cd apps/aklub && django-admin.py compilemessages -l "cs\_CZ"
-    $ django-admin.py migrate
-    $ django-admin.py createsuperuser
+    $ django-admin.py compilemessages -l "cs\_CZ" --pythonpath="/klub-v"
+    $ django-admin.py migrate --pythonpath="/klub-v"
+    $ django-admin.py createsuperuser --pythonpath="/klub-v"
 
 Spuštění
 ============
