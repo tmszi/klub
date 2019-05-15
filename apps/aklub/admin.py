@@ -503,7 +503,7 @@ class UserInCampaignAdmin(ImportExportMixin, AdminAdvancedFiltersMixin, RelatedF
     def save_model(self, request, obj, form, change):
         if obj.verified and not obj.verified_by:
             obj.verified_by = request.user
-        obj.save()
+        obj.save(actual_user=request.user)
 
 
 class UserYearPaymentsAdmin(UserInCampaignAdmin):
@@ -692,7 +692,6 @@ class CommunicationAdmin(RelatedFieldAdmin, admin.ModelAdmin):
         # still require admin action and should be visible.
         qs = super(CommunicationAdmin, self).get_queryset(request)
         return qs.exclude(type='mass', dispatched=True)
-
 
 class AutomaticCommunicationAdmin(admin.ModelAdmin):
     list_display = ('name', 'method', 'subject', 'condition', 'only_once', 'dispatch_auto')

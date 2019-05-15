@@ -114,7 +114,7 @@ def process_template(template_string, user):
     return gendrify_text(text, user.userprofile.sex)
 
 
-def check(users=None, action=None):
+def check(users=None, action=None, **kwargs):
     from .models import AutomaticCommunication, Communication, UserInCampaign
     if not users:
         users = UserInCampaign.objects.all()
@@ -140,11 +140,20 @@ def check(users=None, action=None):
                 subject = auto_comm.subject_en
             if template and template != '':
                 logger.info(u"Added new automatic communication \"%s\" for user \"%s\", action \"%s\"" % (auto_comm, user, action))
-                c = Communication(
-                    user=user, method=auto_comm.method, date=datetime.datetime.now(),
-                    subject=subject, summary=process_template(template, user),
-                    note="Prepared by auto*mated mailer at %s" % datetime.datetime.now(),
-                    send=auto_comm.dispatch_auto, type='auto',
-                )
+                model_data = dict(user=user, method=auto_comm.method, \
+                                  date=datetime.datetime.now(),
+                                  subject=subject, summary=process_template(template, user),
+                                  note="Prepared by auto*mated mailer at %s" % datetime.datetime.now(),
+                                  send=auto_comm.dispatch_auto, type='auto')
+                # Set actual user
+                actual_user = kwargs.get("actual_user", None)
+                if actual_user:
+                    model_data.update(
+                        {
+                            "created_by": actual_user,
+                            "handled_by": actual_user
+                        }
+                    )
+                c = Communication(**model_data)
                 auto_comm.sent_to_users.add(user)
                 c.save()

@@ -1093,9 +1093,10 @@ class UserInCampaign(models.Model):
             from .views import generate_variable_symbol
             self.variable_symbol = generate_variable_symbol()
 
+        user = kwargs.pop("actual_user", None)
         super().save(*args, **kwargs)
         from .autocom import check as autocom_check
-        autocom_check(users=UserInCampaign.objects.filter(pk=self.pk), action=(insert and 'new-user' or None))
+        autocom_check(users=UserInCampaign.objects.filter(pk=self.pk), action=(insert and 'new-user' or None), actual_user=user)
 
     @denormalized(models.NullBooleanField, null=True)
     @depend_on_related('Payment', foreign_key="user")
