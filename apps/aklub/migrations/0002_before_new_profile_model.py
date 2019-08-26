@@ -11,6 +11,8 @@ import django_grapesjs.models.fields
 import stdnumfield.models
 
 from .data_migration.old_user_profile_model_hack import Settings as settings
+
+
 from .data_migration import preference_model_create
 
 # Functions from the following migrations need manual copying.
@@ -20,7 +22,7 @@ from .data_migration import preference_model_create
 
 class Migration(migrations.Migration):
 
-    replaces = [('aklub', '0002_auto_20171109_1518'), ('aklub', '0003_auto_20180322_1430'), ('aklub', '0004_auto_20180626_1152'), ('aklub', '0005_auto_20180724_1653'), ('aklub', '0006_auto_20180725_1558'), ('aklub', '0007_auto_20180730_1549'), ('aklub', '0008_auto_20180730_1849'), ('aklub', '0009_auto_20180807_1726'), ('aklub', '0010_auto_20180822_1730'), ('aklub', '0011_auto_20180914_2106'), ('aklub', '0012_auto_20190128_1054'), ('aklub', '0013_auto_20190201_1221'), ('aklub', '0014_bankaccount_bank_account_number'), ('aklub', '0015_auto_20190206_1104'), ('aklub', '0016_auto_20190212_1543'), ('aklub', '0017_auto_20190226_1910'), ('aklub', '0018_auto_20190227_1130'), ('aklub', '0019_auto_20190320_1454'), ('aklub', '0020_auto_20190326_1153'), ('aklub', '0021_auto_20190329_0842'), ('aklub', '0022_auto_20190329_0931'), ('aklub', '0023_auto_20190329_1003'), ('aklub', '0024_auto_20190606_1649'), ('aklub', '0025_auto_20190610_1239'), ('aklub', '0026_auto_20190611_1544'), ('aklub', '0027_auto_20190618_0955'), ('aklub', '0028_auto_20190621_1036'), ('aklub', '0029_auto_20190626_1536'), ('aklub', '0030_auto_20190627_1624'), ('aklub', '0031_accountstatements_administrative_unit'), ('aklub', '0032_auto_20190801_1141'), ('aklub', '0033_interaction_administrative_unit'), ('aklub', '0034_auto_20190819_1530'), ('aklub', '0035_preference_tables_create'), ('aklub', '0036_auto_20190826_0700')]
+    # replaces = [('aklub', '0002_auto_20171109_1518'), ('aklub', '0003_auto_20180322_1430'), ('aklub', '0004_auto_20180626_1152'), ('aklub', '0005_auto_20180724_1653'), ('aklub', '0006_auto_20180725_1558'), ('aklub', '0007_auto_20180730_1549'), ('aklub', '0008_auto_20180730_1849'), ('aklub', '0009_auto_20180807_1726'), ('aklub', '0010_auto_20180822_1730'), ('aklub', '0011_auto_20180914_2106'), ('aklub', '0012_auto_20190128_1054'), ('aklub', '0013_auto_20190201_1221'), ('aklub', '0014_bankaccount_bank_account_number'), ('aklub', '0015_auto_20190206_1104'), ('aklub', '0016_auto_20190212_1543'), ('aklub', '0017_auto_20190226_1910'), ('aklub', '0018_auto_20190227_1130'), ('aklub', '0019_auto_20190320_1454'), ('aklub', '0020_auto_20190326_1153'), ('aklub', '0021_auto_20190329_0842'), ('aklub', '0022_auto_20190329_0931'), ('aklub', '0023_auto_20190329_1003'), ('aklub', '0024_auto_20190606_1649'), ('aklub', '0025_auto_20190610_1239'), ('aklub', '0026_auto_20190611_1544'), ('aklub', '0027_auto_20190618_0955'), ('aklub', '0028_auto_20190621_1036'), ('aklub', '0029_auto_20190626_1536'), ('aklub', '0030_auto_20190627_1624'), ('aklub', '0031_accountstatements_administrative_unit'), ('aklub', '0032_auto_20190801_1141'), ('aklub', '0033_interaction_administrative_unit'), ('aklub', '0034_auto_20190819_1530'), ('aklub', '0035_preference_tables_create'), ('aklub', '0036_auto_20190826_0700')]
 
     dependencies = [
         ('smmapdfs', '0002_auto_20180611_1830'),
