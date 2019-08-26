@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ('auth', '0013_auto_20190826_0700'),
         ('contenttypes', '0002_remove_content_type_name'),
-        ('aklub', '0036_auto_20190826_0700'),
+        ('aklub', '0002_before_new_profile_model'),
     ]
 
     operations = [
