@@ -10,6 +10,7 @@ import django.utils.timezone
 import django_grapesjs.models.fields
 import stdnumfield.models
 
+from .data_migration import preference_model_create
 
 # Functions from the following migrations need manual copying.
 # Move them and any dependencies into this file, then update the
@@ -716,7 +717,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.RunPython(
-            code=aklub.migrations.0035_preference_tables_create.Migration.preference_tables_create,
+            code=preference_model_create.preference_model_create,
         ),
         migrations.AlterField(
             model_name='masscommunication',
