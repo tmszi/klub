@@ -10,6 +10,7 @@ import django.utils.timezone
 import django_grapesjs.models.fields
 import stdnumfield.models
 
+from .data_migration.old_user_profile_model_hack import Settings as settings
 from .data_migration import preference_model_create
 
 # Functions from the following migrations need manual copying.
